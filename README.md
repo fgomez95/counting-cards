@@ -15,12 +15,12 @@ the player should bet low.
 | 0             | 7, 8, 9                   |
 | -1            | 10, 'J', 'Q', 'K', 'A'    |
 
-** Hint **
+**Hint**
 > Do NOT reset count to 0 when value is 7, 8, or 9.
 > Do NOT return an array.
 > Do NOT include quotes (single or double) in the output.
 
-** Test Cases **
+**Test Cases**
 ###### Cards Sequence 2, 3, 4, 5, 6 should return 5 Bet
 ###### Cards Sequence 7, 8, 9 should return 0 Hold
 ###### Cards Sequence 10, J, Q, K, A should return -5 Hold
