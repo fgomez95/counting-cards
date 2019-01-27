@@ -36,22 +36,23 @@ function appTest(expect, testFunc){
         return testCount.push(expect);
     }
     if(!testFunc()) fail(expect);
-    else testCount.push("success");
+    return testCount.push("success");
 }
 
 appTest('expect to increment when given 2, 3, 4, 5, 6',()=>{
     count=0;
-    cc(2); cc(3); cc(4); cc(5); cc(6);
-    if(count === 5) return true;
+    const myArr=[2, 3, 4, 5, 6];
+    for(const val of myArr) cc(val);
+    if(count === myArr.length) return true;
     return false;
 });
 
 
 appTest('expect count to not change when given 7, 8, 9',()=>{
     count=0;
-    cc(7); cc(8); cc(9); 
-    if(count === 0) return true;
-    return false;
+    const myArr=[7, 8, 9];
+    for(const val of myArr) cc(val);
+    return count === 0;
 });
 
 appTest("expect to decrement when given 10, 'J', 'Q', 'K', 'A'",()=>{
@@ -62,20 +63,17 @@ appTest("expect to decrement when given 10, 'J', 'Q', 'K', 'A'",()=>{
         cc(val);
         valueCount++;
     }
-    if(count === -valueCount) return true;
-    return false;
+    return count === -valueCount;
 });
 
 appTest("expect message to have 'Bet' when count greater than 0", ()=>{
     count=0;
-    if(RegExp('Bet').test(cc(2))) return true;
-    else return false;
+    return RegExp('Bet').test(cc(2));
 });
 
 appTest("expect message to have 'Hold' when count not greater than 0", ()=>{
     count=0;
-    if(RegExp('Hold').test(cc(10))) return true;
-    else return false;
+    return RegExp('Hold').test(cc(10));
 });
 
 testCount.forEach(testMessage=>console.log(testMessage));
