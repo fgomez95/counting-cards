@@ -39,30 +39,26 @@ function appTest(expect, testFunc){
     return testCount.push("success");
 }
 
-appTest('expect to increment when given 2, 3, 4, 5, 6',()=>{
+appTest('expect to increment when given 2, 3, 4, 5, 6', ()=>{
     count=0;
     const myArr=[2, 3, 4, 5, 6];
     for(const val of myArr) cc(val);
-    if(count === myArr.length) return true;
-    return false;
+    return count === myArr.length;
 });
 
 
-appTest('expect count to not change when given 7, 8, 9',()=>{
+appTest('expect count to not change when given 7, 8, 9', ()=>{
     count=0;
     const myArr=[7, 8, 9];
     for(const val of myArr) cc(val);
     return count === 0;
 });
 
-appTest("expect to decrement when given 10, 'J', 'Q', 'K', 'A'",()=>{
+appTest("expect to decrement when given 10, 'J', 'Q', 'K', 'A'", ()=>{
     count=0;
     let valueCount=0;
     const myArr=[10, 'J', 'Q', 'K', 'A'];
-    for(const val of myArr){ 
-        cc(val);
-        valueCount++;
-    }
+    for(const val of myArr) cc(val); valueCount++;
     return count === -valueCount;
 });
 
