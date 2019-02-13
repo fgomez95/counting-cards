@@ -1,6 +1,6 @@
 var count = 0; var testCount = [];
 function cc(card) {
-  let message="";
+  let message = "";
   switch(card){
       case 2:
       case 3:
@@ -26,7 +26,7 @@ function cc(card) {
       default:
           break;
   }
-  if(count>0) message= `${count} Bet`;
+  if(count > 0) message = `${count} Bet`;
   else message = `${count} Hold`;
   return message;
 }
@@ -36,40 +36,45 @@ function appTest(expect, testFunc){
         return testCount.push(expect);
     }
     if(!testFunc()) fail(expect);
-    return testCount.push("success");
+    else return testCount.push("success");
 }
 
-appTest('expect to increment when given 2, 3, 4, 5, 6', ()=>{
-    count=0;
-    const myArr=[2, 3, 4, 5, 6];
+function generateTest(){
+    testCount.forEach(test => console.log(test));
+}
+
+appTest('expect to increment when given 2, 3, 4, 5, 6', () => {
+    count = 0;
+    const myArr = [2, 3, 4, 5, 6];
     for(const val of myArr) cc(val);
     return count === myArr.length;
 });
 
 
-appTest('expect count to not change when given 7, 8, 9', ()=>{
-    count=0;
-    const myArr=[7, 8, 9];
+appTest('expect count to not change when given 7, 8, 9', () => {
+    count = 0;
+    const myArr = [7, 8, 9];
     for(const val of myArr) cc(val);
     return count === 0;
 });
 
-appTest("expect to decrement when given 10, 'J', 'Q', 'K', 'A'", ()=>{
-    count=0;
-    let valueCount=0;
-    const myArr=[10, 'J', 'Q', 'K', 'A'];
-    for(const val of myArr) cc(val); valueCount++;
-    return count === -valueCount;
+appTest("expect to decrement when given 10, 'J', 'Q', 'K', 'A'", () => {
+    count = 0;
+    let valueCount = 0;
+    const myArr = [10, 'J', 'Q', 'K', 'A'];
+    for(const val of myArr) cc(val), valueCount--;
+    return count === valueCount;
 });
 
-appTest("expect message to have 'Bet' when count greater than 0", ()=>{
-    count=0;
+appTest("expect message to have 'Bet' when count greater than 0", () => {
+    count = 0;
     return RegExp('Bet').test(cc(2));
 });
 
-appTest("expect message to have 'Hold' when count not greater than 0", ()=>{
-    count=0;
+appTest("expect message to have 'Hold' when count not greater than 0", () => {
+    count = 0;
     return RegExp('Hold').test(cc(10));
 });
 
-testCount.forEach(testMessage=>console.log(testMessage));
+
+generateTest();
